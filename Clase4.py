@@ -81,7 +81,7 @@ def ord_seleccion(lista):
     pos_final = len(lista) - 1
     
 # mientras haya al menos 2 elementos para ordenar
-    while pos_final > 0:
+    while pos_final > 0: # -----N------
     # posición del mayor valor del segmento
         pos_max = buscar_max(lista, 0, pos_final)
 
@@ -100,7 +100,7 @@ def buscar_max(lista, inicio, fin):
     # La lista no debe ser vacía. a y b son las posiciones inicial y final del segmento
 
     pos_max = inicio
-    for i in range(inicio + 1, fin + 1):
+    for i in range(inicio + 1, fin + 1): # -----N------
         if lista[i] > lista[pos_max]:
             pos_max = i
     return pos_max
@@ -108,7 +108,7 @@ def buscar_max(lista, inicio, fin):
 lista1 = [3,5,6,7,1,2,9]
 print(ord_seleccion(lista1))
 
-# Ordenar N numero insume N2 (N cuadrática) tiempo.
+# Ordenar N numero insume N2 (while y for) (N cuadrática) tiempo.
 
 '''
 # Ordenamiento por insercion:
@@ -128,7 +128,10 @@ def reubicar(lista, posicion):
     lista[posOriginal] = valorPosicion
 
 # listaEntrada-1: recorro las posiciones
-for i in range(len(listaEntrada)-1):
-    if listaEntrada[i+1]<listaEntrada[i]:
-        reubicar(listaEntrada, i+1)
-    print("DEBUG: ", listaEntrada)
+def ordenInsercion(listaEntrada):
+    for i in range(len(listaEntrada)-1):
+        if listaEntrada[i+1]<listaEntrada[i]:
+            reubicar(listaEntrada, i+1)
+        print("DEBUG: ", listaEntrada)
+
+ordenInsercion(listaEntrada)
