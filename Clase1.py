@@ -36,15 +36,17 @@ calculo(int(input("Ingrese num1: ")), int(input("Ingrese num2: ")))
 # ordene los números dentro de la lista y luego imprima por pantalla la lista completa y ordenada.
 '''
 def excercise5():
-    userValueList = [] 
-    for number in range(10): 
-        userValue = int(input("Ingrese un numero entero")) 
-        userValueList.append(userValue) 
+    userValueList = [] # 1 (constante)
+    for number in range(10): # n (variable)
+        userValue = int(input("Ingrese un numero entero")) # 1 (constante)
+        userValueList.append(userValue) # 1 (constante)
 
-    userValueList.sort() 
+    userValueList.sort() # n log n
     print(userValueList)
 
 excercise5()
+
+# O = O(n log n)
 '''
 # Ejercicio 6
 #
