@@ -19,6 +19,7 @@ def cochesYmotosN2(vehiculos, ruedas):
 
 print(cochesYmotosN2(20, 80))
 '''
+
 '''
 # O(n) lineal
 def cochesYmotosLineal(vehiculos, ruedas):
@@ -32,6 +33,7 @@ def cochesYmotosLineal(vehiculos, ruedas):
 
 print(cochesYmotosLineal(30, 80));
 '''
+
 '''
 # O(1) constante
 def cochesYmotos(vehiculos, ruedas):
@@ -49,10 +51,6 @@ def cochesYmotos(vehiculos, ruedas):
 print(cochesYmotos(6, 20))
 '''
 
-
-  
-
-
 '''
 def cochesYmotosN2(vehiculos, ruedas):
     for coche in range(vehiculos + 1): # N
@@ -68,6 +66,7 @@ print(cochesYmotosN2(6, 20))
 '''
 # Ordenamiento de listas
 # Por selección:
+# Baja cantidad de intercambios (N), alta cantidad de comparaciones(N2). Siempre tiene el mismo comportamiento.
 # 1) Busca el mas grande y lo lleva al final de la lista.
 # 2) Busca el más grande entre la primera y la anteultima posicion y lo lleva a la anteultima posicion.
 
@@ -111,19 +110,27 @@ print(ord_seleccion(lista1))
 # Ordenar N numero insume N2 (while y for) (N cuadrática) tiempo.
 
 '''
-# Ordenamiento por insercion:
+
+'''
+# Ordenamiento por inserciónn:
+# Intuitivo, intercambiando ordenadamente en cada paso.
+# Ventaja: en el caso de tener los datos ya ordenados, no hace inercambios (N).
+# Desventaja: si estan todos los numeros invertidos, hace una gran cantidad de compraraciones e intercambios (N2). 
+# Para secuencias cortas el tiempo de ejecución es bueno.
 # Compara el segundo con el primero. Si posicion 0 es mayor que el de posicion 1. Si es así se intercambian.
-# Compara el 2 y lo ordena respecto del 1 y que el 0.
-# Ordena el 3 respecto del 2, 1 y 0.
+# Despues compara el 2 con el 1 y que el 0 y vas corriendolo para adelante mientras sea menor que ellos.
+# Y así... Ordena el todos los valores respecto de los anteriores, siempre y cuando se cumpla la condicion.
 
 listaEntrada = [3,5,6,7,1,2,9]
 
 def reubicar(lista, posicion):
     valorPosicion = lista[posicion]
     posOriginal = posicion
-    
+    print(f"Valor: {valorPosicion} - Posición: {posOriginal}")
+    print(lista[posOriginal-1])
     while posOriginal > 0 and valorPosicion < lista[posOriginal-1]:
         lista[posOriginal] = lista[posOriginal - 1]
+        print(f"{posOriginal} es ahora {posOriginal-1}")
         posOriginal -= 1
     lista[posOriginal] = valorPosicion
 
@@ -135,3 +142,51 @@ def ordenInsercion(listaEntrada):
         print("DEBUG: ", listaEntrada)
 
 ordenInsercion(listaEntrada)
+
+# Ordenar N numero insume N2 (while y for) (N cuadrática) tiempo.
+# Cuando la lista se encuentra ordenada, solo compara pero no hace ningun cambio (Insume N en este caso).
+# En memoria se tienen: la lista y algunas variables de tamaño 1.
+'''
+
+# REalizar un programa que
+'''
+listaEntrada = [3,5,6,7,1,2,9]  
+
+def reubicar(lista, posicion):
+    valorPosicion = lista[posicion]
+    posOriginal = posicion
+    while posOriginal > 0 and valorPosicion > lista[posOriginal-1]:
+        lista[posOriginal] = lista[posOriginal - 1]
+        posOriginal -= 1
+    lista[posOriginal] = valorPosicion
+
+def ordenDescendente(listaEntrada):
+    for i in range(len(listaEntrada)-1):
+        if listaEntrada[i+1]>listaEntrada[i]:
+            reubicar(listaEntrada, i+1)
+        print("DEBUG: ", listaEntrada)
+
+ordenDescendente(listaEntrada)
+'''
+listaEntrada = [3,5,6,7,1,2,9]
+
+#O(N2)
+def orden_insercion(lista):
+    listaNueva = lista.copy()
+    for i in range(len(listaNueva) -1): # N
+        if listaNueva[i+1] > listaNueva[i]:
+            reubicar(listaNueva, i+1)
+        print("DEBUG: ", listaNueva)
+    return listaNueva
+
+def reubicar(listaNueva, pos):
+    valorPos = listaNueva[pos]
+    posOrig = pos
+    print(f" valor es {valorPos} para la posicion {posOrig}")
+    print(f"{listaNueva[posOrig - 1]}")
+    while posOrig > 0 and valorPos > listaNueva[posOrig - 1]: # N
+        listaNueva[posOrig] = listaNueva[posOrig-1]
+        listaNueva[posOrig-1] = valorPos
+        print(f" {posOrig} es ahora {listaNueva[posOrig]}")
+        posOrig -= 1
+print(orden_insercion(listaEntrada))
